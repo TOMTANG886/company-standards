@@ -1,0 +1,24 @@
+{
+  "name": "company-standards",
+  "version": "1.0.0",
+  "description": "Centralized engineering specifications and templates",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "validate": "node scripts/validate-spec.js",
+    "validate:all": "node scripts/validate-spec.js --all",
+    "build:index": "node scripts/build-index.js",
+    "webhook:notify": "bash scripts/webhook-notify.sh",
+    "lint": "npm run validate:all"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "js-yaml": "^4.1.0",
+    "glob": "^11.0.0"
+  },
+  "devDependencies": {
+    "ajv": "^8.17.1"
+  }
+}
