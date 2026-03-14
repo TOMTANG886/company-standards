@@ -1,0 +1,26 @@
+name: Validate Specs
+
+on:
+  pull_request:
+    paths:
+      - 'specs/**'
+      - 'templates/**'
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      - run: npm ci
+      - name: Validate changed spec files
+        run: |
+          CHANGED=$(git diff --name-only origin/${{ github.base_ref }}...HEAD -- 'specs/**/*.md')
+          if [ -n "$CHANGED" ]; then
+            node scripts/validate-spec.js $CHANGED
+          else
+            echo "No spec files changed."
+          fi

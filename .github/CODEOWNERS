@@ -1,0 +1,14 @@
+# Default: tech-leads own everything not matched below
+*                           @your-org/tech-leads
+
+# Spec files: project team + tech-leads (project teams added per-project)
+/specs/                     @your-org/tech-leads
+
+# Templates, guidelines, versioning: tech-leads only (2-reviewer minimum)
+/templates/                 @your-org/tech-leads
+/guidelines/                @your-org/tech-leads
+/versioning/                @your-org/tech-leads
+
+# Scripts and CI: devops + tech-leads
+/scripts/                   @your-org/devops @your-org/tech-leads
+/.github/                   @your-org/devops @your-org/tech-leads

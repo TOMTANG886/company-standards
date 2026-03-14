@@ -1,0 +1,66 @@
+name: Spec Amendment Request
+description: Request a change to an existing specification.
+title: "[Amendment] <spec-id>: <brief description of change>"
+labels: ["spec-amendment", "triage"]
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form to request an amendment to an existing spec. Provide as much context as possible
+        so the spec author or tech lead can assess the impact and appropriate version bump.
+
+  - type: input
+    id: spec_id
+    attributes:
+      label: Spec ID
+      description: The `id` field from the spec's frontmatter (e.g. `carerp/007-connection-pooling`).
+      placeholder: "e.g. carerp/007-connection-pooling"
+    validations:
+      required: true
+
+  - type: input
+    id: current_version
+    attributes:
+      label: Current Version
+      description: The `version` field from the spec's frontmatter (e.g. `1.2.0`).
+      placeholder: "e.g. 1.2.0"
+    validations:
+      required: true
+
+  - type: textarea
+    id: change_description
+    attributes:
+      label: Description of Change Needed
+      description: |
+        Describe exactly what needs to change in the spec. Be specific — reference the section and,
+        if possible, the wording that needs to change.
+      placeholder: "e.g. Acceptance Criterion 3 requires p99 ≤ 100 ms, but load tests show the infrastructure cannot sustain this. The criterion should be updated to ≤ 150 ms with a footnote explaining the constraint."
+    validations:
+      required: true
+
+  - type: textarea
+    id: reason
+    attributes:
+      label: Reason / Motivation
+      description: |
+        Why is this change needed? Include any supporting data, incidents, or decisions that motivate the request.
+      placeholder: "e.g. Three load tests across two weeks consistently show p99 of ~130 ms at 500 concurrent users. The original 100 ms target was set without empirical data."
+    validations:
+      required: true
+
+  - type: dropdown
+    id: breaking_change
+    attributes:
+      label: Is This a Breaking Change?
+      description: |
+        A breaking change (MAJOR version bump) alters scope, acceptance criteria, or an interface in a way
+        that would require implementors to revise already-conforming work. See the versioning policy for details.
+      options:
+        - "No — PATCH or MINOR bump expected"
+        - "Yes — MAJOR bump expected"
+        - "Unsure — needs tech-lead assessment"
+      default: 0
+    validations:
+      required: true

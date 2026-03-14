@@ -1,0 +1,74 @@
+name: New Spec Request
+description: Request a new specification to be written for a feature or system.
+title: "[New Spec] <project>: <brief description>"
+labels: ["new-spec", "triage"]
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form to request a new specification. A tech lead will triage the request and assign an author.
+        Before submitting, check existing specs in `specs/` to ensure this hasn't already been addressed.
+
+  - type: input
+    id: spec_title
+    attributes:
+      label: Spec Title
+      description: A concise, human-readable title for the proposed spec.
+      placeholder: "e.g. Database Connection Pooling for CareRP"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: project
+    attributes:
+      label: Project
+      description: Which project does this spec belong to? (Select the closest match; a tech lead can reassign.)
+      options:
+        - "-- Select a project --"
+        - carerp
+        - platform
+        - infra
+        - data
+        - mobile
+        - other (describe in problem statement)
+      default: 0
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem_statement
+    attributes:
+      label: Problem Statement
+      description: |
+        Describe the problem that needs to be solved. Focus on the "what" and "why", not the solution.
+        Include any relevant context, data, or incidents that motivate the request.
+      placeholder: "e.g. Our database connections are not pooled, causing N+1 connection storms under high load and database crashes during peak hours."
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposed_solution
+    attributes:
+      label: Proposed Solution (optional)
+      description: |
+        If you have a solution in mind, describe it briefly. This is optional — the spec author will define the solution.
+        Do not describe implementation details here.
+      placeholder: "e.g. Implement PgBouncer in transaction mode in front of our PostgreSQL cluster."
+    validations:
+      required: false
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority
+      description: How urgently is this spec needed?
+      options:
+        - low
+        - medium
+        - high
+        - critical
+      default: 1
+    validations:
+      required: true
